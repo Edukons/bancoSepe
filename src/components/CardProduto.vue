@@ -8,14 +8,32 @@ function formatarPreco(preco) {
   return 'R$ ' + preco.toFixed(2).replace('.', ',')
 }
 import MeuBotao from '@/components/MeuBotao.vue'
+
+
+  import { ref, onMounted } from 'vue'
+  import { supabase } from './lib/supabaseClient'
+
+  const countries = ref([])
+
+  async function getProdutos() {
+    const { data } = await supabase.from('produtos').select()
+    produtos.value = data
+  }
+
+  onMounted(() => {
+    getProdutos()
+  })
 </script>
 
 <template>
   <div class="card-produto">
       <div class="wrap-produto">
         <img :src="props.produto.imagem" alt="Produto" class="produto" />
-        <p class="titulo-produto">{{ props.produto.descricao }}</p>
-        <p class="preco-produto">{{ formatarPreco(props.produto.preco) }}</p>
+        <!-- <p class="titulo-produto">{{ props.produto.descricao }}</p>
+        <p class="preco-produto">{{ formatarPreco(props.produto.preco) }}</p> -->
+        <ul>
+      <li v-for="produto in produtos" :key="produtos.pk_produto">{{ produtos.nome_produto }}</li>
+    </ul>
       </div>
     <div class="card-buttons-produtos" style="font-size: 20px;">
       <meu-botao class="info" @click="emit('adicionarASacola', props.produto)" style="font-size: 20px;">Adicionar a
@@ -28,7 +46,7 @@ import MeuBotao from '@/components/MeuBotao.vue'
   cursor: pointer;
   transform: scale(1.1);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
-}+-
+}
 img {
   width: 300px;
   height: 200px;
