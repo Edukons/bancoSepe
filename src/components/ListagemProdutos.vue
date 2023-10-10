@@ -11,6 +11,7 @@ import CardProduto from '@/components/CardProduto.vue'
     </div>
 </template>
 
+
 <style scoped>
 .listagem-produtos {
 display: grid;

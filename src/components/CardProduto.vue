@@ -27,7 +27,7 @@ import MeuBotao from '@/components/MeuBotao.vue'
 .card-produto:hover{
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
 }
 img {
   width: 300px;
