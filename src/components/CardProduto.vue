@@ -11,7 +11,7 @@ import MeuBotao from '@/components/MeuBotao.vue'
 
 
   import { ref, onMounted } from 'vue'
-  import { supabase } from './lib/supabaseClient'
+  import { supabase } from '@/lib/supabaseClient'
 
   const countries = ref([])
 
@@ -31,9 +31,10 @@ import MeuBotao from '@/components/MeuBotao.vue'
         <img :src="props.produto.imagem" alt="Produto" class="produto" />
         <!-- <p class="titulo-produto">{{ props.produto.descricao }}</p>
         <p class="preco-produto">{{ formatarPreco(props.produto.preco) }}</p> -->
-        <ul>
-      <li v-for="produto in produtos" :key="produtos.pk_produto">{{ produtos.nome_produto }}</li>
-    </ul>
+      <ul>
+        <li v-for="produto in produtos" :key="produto.pk_produto" class="titulo-produto">{{ produto.nome_produto }}</li>
+        <li v-for="produto in produtos" :key="produto.pk_produto" class="preco-produto">{{ formatarPreco(produto.preco_produto) }}</li>
+      </ul>
       </div>
     <div class="card-buttons-produtos" style="font-size: 20px;">
       <meu-botao class="info" @click="emit('adicionarASacola', props.produto)" style="font-size: 20px;">Adicionar a
