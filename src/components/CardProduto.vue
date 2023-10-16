@@ -5,7 +5,7 @@ const props = defineProps({
 const emit = defineEmits(['adicionarASacola'])
 
 function formatarPreco(preco) {
-  return 'R$ ' + preco.toFixed(2).replace('.', ',')
+  return 'R$ ' + preco.toFixed(2)
 }
 import MeuBotao from '@/components/MeuBotao.vue'
 
@@ -29,12 +29,11 @@ import MeuBotao from '@/components/MeuBotao.vue'
   <div class="card-produto">
       <div class="wrap-produto">
         <img :src="props.produto.imagem" alt="Produto" class="produto" />
-        <!-- <p class="titulo-produto">{{ props.produto.descricao }}</p>
-        <p class="preco-produto">{{ formatarPreco(props.produto.preco) }}</p> -->
-      <ul>
-        <li v-for="produto in produtos" :key="produto.pk_produto" class="titulo-produto">{{ produto.nome_produto }}</li>
-        <li v-for="produto in produtos" :key="produto.pk_produto" class="preco-produto">{{ formatarPreco(produto.preco_produto) }}</li>
-      </ul>
+        <p class="titulo-produto">{{ props.produto.nome }}</p>
+        <p class="titulo-produto">{{ props.produto.descricao }}</p>
+        <p class="preco-produto">R$ {{ props.produto.preco }}</p>
+
+        <!-- <li v-for="produto in produtos" :key="produto.pk_produto" class="titulo-produto">{{ produto.nome_produto }}</li> -->
       </div>
     <div class="card-buttons-produtos" style="font-size: 20px;">
       <meu-botao class="info" @click="emit('adicionarASacola', props.produto)" style="font-size: 20px;">Adicionar a
